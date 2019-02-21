@@ -1,18 +1,30 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, {Component} from 'react'
+
 import {connect} from 'react-redux'
 
 /**
  * COMPONENT
  */
-export const UserHome = props => {
-  const {email} = props
+class UserHome extends Component {
+  render() {
+    const {email, garbs} = this.props
 
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-    </div>
-  )
+    return (
+      <div>
+        <h3>Welcome, {email}</h3>
+        <h2>Your Garbs</h2>
+        {garbs.length ? (
+          garbs.map(garb => (
+            <div>
+              <img src={garb.imageUrl} />
+            </div>
+          ))
+        ) : (
+          <h4>You don't have any garbs in your inventory</h4>
+        )}
+      </div>
+    )
+  }
 }
 
 /**
@@ -20,15 +32,9 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    email: state.user.email,
+    garbs: state.garb.garbs
   }
 }
 
 export default connect(mapState)(UserHome)
-
-/**
- * PROP TYPES
- */
-UserHome.propTypes = {
-  email: PropTypes.string
-}
