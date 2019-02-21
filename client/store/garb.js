@@ -18,9 +18,17 @@ const gotGarbs = garbData => ({type: GOT_GARBS, garbData})
 /**
  * THUNK CREATORS
  */
-export const getGarbs = () => {
+export const getGarbs = userId => {
   return async dispatch => {
-    const response = await axios.get('api/:userId')
+    const response = await axios.get(`api/garbs/${userId}`)
+    const garbData = response.data
+    dispatch(gotGarbs(garbData))
+  }
+}
+
+export const getGarbsByType = (userId, type) => {
+  return async dispatch => {
+    const response = await axios.get(`api/garbs/${userId}/${type}`)
     const garbData = response.data
     dispatch(gotGarbs(garbData))
   }

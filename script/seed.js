@@ -14,7 +14,9 @@ const garbSeed = [
     type: 'bottom',
     warmthLevel: 3,
     timesWorn: 0,
-    userId: 1
+    userId: 1,
+    imageUrl:
+      'https://images.express.com/is/image/expressfashion/0035_03073429_1478?cache=on&wid=361&fmt=jpeg&qlt=75,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon'
   },
   {
     type: 'top',
@@ -26,7 +28,9 @@ const garbSeed = [
     type: 'bottom',
     warmthLevel: 5,
     timesWorn: 0,
-    userId: 2
+    userId: 2,
+    imageUrl:
+      'https://images.express.com/is/image/expressfashion/0035_03073429_1478?cache=on&wid=361&fmt=jpeg&qlt=75,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon'
   }
 ]
 
