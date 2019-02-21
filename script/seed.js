@@ -1,7 +1,34 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Garb} = require('../server/db/models')
+
+const garbSeed = [
+  {
+    type: 'top',
+    warmthLevel: 1,
+    timesWorn: 0,
+    userId: 1
+  },
+  {
+    type: 'bottom',
+    warmthLevel: 3,
+    timesWorn: 0,
+    userId: 1
+  },
+  {
+    type: 'top',
+    warmthLevel: 5,
+    timesWorn: 0,
+    userId: 2
+  },
+  {
+    type: 'bottom',
+    warmthLevel: 5,
+    timesWorn: 0,
+    userId: 2
+  }
+]
 
 async function seed() {
   await db.sync({force: true})
@@ -12,7 +39,15 @@ async function seed() {
     User.create({email: 'murphy@email.com', password: '123'})
   ])
 
+  const garbs = await Promise.all(
+    garbSeed.map(async garb => {
+      const allGarbs = await Garb.create(garb)
+      return allGarbs
+    })
+  )
+
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${garbs.length} garbs`)
   console.log(`seeded successfully`)
 }
 
